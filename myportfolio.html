@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPortfolio</title>
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<style>
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+  body {
+    background: #0c1022;
+    color: #fff;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10px;
+    background: transparent;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+  }
+
+  .logo{
+    font-size: 25px;
+     color:#fff;
+    text-decoration: none;
+    font-weight: 600;
+    pointer-events: none;
+     max-width: 20%;
+     opacity: 0;
+     animation: slideTop 1s ease forwards;
+  }
+
+  .navbar a{
+    display: inline-block;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 35px;
+    animation: slideTop .5s ease forwards;
+    animation-delay:calc(.1s);
+  }
+
+  .navbar a.active,
+   .navbar a:hover {
+    background: linear-gradient(45deg,#f06,#3cf);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+   }
+
+   .home{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 70px 10% 0;
+   }
+     .home-content{
+       max-width: 600px; 
+     }
+   .home-content h1{
+    font-size: 50px;
+    font-weight: 700;
+    opacity: 0;
+    animation: slideRight 1s ease forwards;
+    animation-delay: .5s;
+   }
+   .home-content h3{
+    font-size: 32px;
+    font-weight: 700;
+    opacity: 0;
+    animation: slideLeft 1s ease forwards;
+    animation-delay: .5s;
+   }
+   .home-content p{
+    font-size: 16px;
+    margin: 20px 0 40px;
+    opacity: 0;
+    animation: slideLeft 1s ease forwards;
+    animation-delay: 1.3s;
+   }
+
+   .btn{
+        display: inline-flex;
+        position: relative;
+        width: 150px;
+        height: 48px;
+        font-size: 17px;
+        color: #fff;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600; 
+        justify-content: space-around;
+        align-items: center;
+        z-index: 1;
+        opacity: 0;
+        animation: slideTop 1s ease forwards,floatImage 2s ease-in-out infinite;
+        animation-delay: 1.3s,1s;
+    }
+    .btn::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        inset: 0;
+        background: linear-gradient(45deg,#f06,#3CF,#f06);
+        background-position: 0 0;
+        z-index: -1;
+        border-radius: 40px;
+        background-size: 200%;
+        filter: blur(5px);
+        transition: 0.5s;
+    }
+    .btn:hover::before {
+        background-position: 100% 0;
+   }
+    .btn::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        inset: 0;
+        background: linear-gradient(45deg,#f06,#3CF,#f06);
+        background-position: 0 0;
+        z-index: -1;
+        border-radius: 40px;
+        background-size: 200%;
+        transition: 0.5s;
+    }
+    .btn:hover::after {
+         background-position: 100% 0;
+    }
+    .home-sci a {
+    position: relative;
+     display: flex;
+     width: 40px;
+     justify-content: center;
+     align-items: center;
+     width: 40px;
+     height: 40px;
+     background: linear-gradient(45deg, #f06,#3cf);
+     border-radius: 50%;
+     font-size: 20px;
+     color: #fff;
+     text-decoration: none;
+     margin: 20px 0;
+     z-index: 1;
+     opacity: 0;
+     animation: slideRight 1s ease forwards ,floatImage 2s ease-in-out infinite ;
+     animation-delay: 1.3s, 2s;
+    }
+    .home-sci a::before{
+      content:'';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+     background:linear-gradient(45deg,#f06,#3cf);
+      border-radius: 50%;
+      background-size: 200%;
+      z-index: -1;
+      transition: 0.5s;
+   }
+   .home-sci a:hover::before{
+    filter: blur(5px);
+ }
+     .home-sci a::after{
+        content:'';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+       background: #0c1022;
+        border-radius: 50%;
+        background-size: 200%;
+        z-index: -1;
+        transform: scale(.88);
+        transition: 0.5s;
+     }
+     .home-sci a:hover:after {
+        transform: scale(0);
+     }
+
+     .home-img{
+      width: 410px;
+      height: 410px;
+      opacity: 0;
+      animation: zoomIn 1s ease forwards,floatImage 2s ease-in-out infinite;
+      animation-delay: 1s ,3s;
+     }
+      
+     .home-img .glowing-circle{
+      width: 100%;
+      height:100%;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      border-radius: 50%;
+     }
+     .home-img .glowing-circle::after{
+      content: '';
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      background: #0c1022;
+      border-radius: 50%;
+     }
+      .glowing-circle span{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgb(89, 0, 255),#3cf);
+        border-radius: 50%;
+      }
+      
+      .glowing-circle span:nth-child(1){
+        filter: blur(5px);
+      }
+     .glowing-circle .image{
+      position: relative;
+      width: 380px;
+      height: 380px;
+      z-index: 1;
+      border-radius: 50%;
+      overflow: hidden;
+     }
+      
+     .image img{
+      position: absolute;
+      max-width: 350px;
+      object-fit: cover;
+     }  
+     @keyframes slideTop{
+        0%{
+          opacity: 0;
+          transform: translateY(100px);
+        }
+        100%{
+          opacity: 1;
+          transform: translateY(0);
+        }
+       }
+
+       @keyframes slideRight{
+        0%{
+          opacity: 0;
+          transform: translateX(-100px);
+        }
+        100%{
+          opacity: 1;
+          transform: translateX(0);
+        }
+       }
+
+       @keyframes slideLeft{
+        0%{
+          opacity: 0;
+          transform: translateX(100PX);
+        }
+        100%{
+          opacity: 1;
+          transform: translateX(0);
+        }
+       }
+
+       @keyframes zoomIn{
+        0%{
+          opacity: 0;
+          transform: scale(0);
+        }
+        100%{
+          opacity: 1;
+          transform: scale(1);
+        }
+       }
+
+       @keyframes floatImage{
+        0%{
+          opacity: 0;
+          transform: translateY(0);
+        }
+        50%{
+          opacity: 1;
+          transform: translateY(-25px);
+        }
+        100%{
+          opacity: 1;
+          transform: translateY(0);
+        }
+       }
+</style>
+
+
+<body>
+    <header class="header">
+       <a href="#" class="logo">AMRITA KASTWAR</a>
+       <nav class="navbar">
+         <a href="myportfolio.html" class="active">Home</a>
+         <a href="about.html">About</a>
+         <a href="skills.html">Skills</a>
+         <a href="myportfolio.html">Portfolio</a>
+         <a href="contact.html">Contact</a>
+       </nav>
+    </header>
+    <section class="home">
+        <div class="home-sci">
+            <a href="#"><i class='bx bxl-linkedin'></i></a>
+            <a href="#"><i class='bx bxl-gitlab' ></i></a>
+            <a href="#"><i class='bx bxl-gmail' ></i></a>
+        </div>
+       <div class="home-content">
+     <h1>Hi, I'am Amrita Kastwar</h1>
+     <h3>Web Developer</h3>
+     <p>"Proactive and adaptable web developer with strong communication and time management skills."</p>
+     <a href="Amrita kastwar (1).pdf" class="btn">Download resume</a>
+       </div>
+       <div class="home-img">
+           <div class="glowing-circle">
+            <span></span>
+            <span></span>
+            <div class="image">
+              <img src="file.png" alt="">
+            </div>
+           </div>
+       </div>
+    </section>
+</body>
+</html>
